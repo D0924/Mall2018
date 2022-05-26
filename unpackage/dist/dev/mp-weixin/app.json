@@ -5,7 +5,15 @@
     "pages/shoppingCat/shoppingCat",
     "pages/profile/profile"
   ],
-  "subPackages": [],
+  "subPackages": [
+    {
+      "root": "subPackage",
+      "pages": [
+        "goodsList/goodsList",
+        "goodsDetails/goodsDetails"
+      ]
+    }
+  ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",

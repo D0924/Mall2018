@@ -31,7 +31,7 @@
 		}
 	],
 	"tabBar": {
-		"selectedColor":"#C00000",
+		"selectedColor": "#C00000",
 		"list": [{
 				"pagePath": "pages/home/home",
 				"text": "首页",
@@ -57,10 +57,22 @@
 			}
 		]
 	},
+	"subPackages": [{
+		"root": "subPackage",
+		"pages": [{
+				"path": "goodsList/goodsList",
+				"style": {}
+			},
+			{
+				"path": "goodsDetails/goodsDetails",
+				"style": {}
+			}
+		]
+	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor":"#C00000",
+		"navigationBarBackgroundColor": "#C00000",
 		"backgroundColor": "#F8F8F8"
 	}
 }
