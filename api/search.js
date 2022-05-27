@@ -14,7 +14,7 @@ export function getSearchList(query) {
 	return service({
 		url: '/api/public/v1/goods/qsearch',
 		method: 'GET',
-		data:query
+		data: query
 	})
 }
 
@@ -23,6 +23,15 @@ export function getSearchList2(query) {
 	return service({
 		url: '/api/public/v1/goods/search',
 		method: 'GET',
-		data:query
+		data: query
+	})
+}
+
+// 获取商品详情
+export function getGoodsDetail(data) {
+	return service({
+		url: '/api/public/v1/goods/detail',
+		method: 'GET',
+		data
 	})
 }
