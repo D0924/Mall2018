@@ -18,3 +18,11 @@ export function getSearchList(query) {
 	})
 }
 
+// 获取商品列表数据
+export function getSearchList2(query) {
+	return service({
+		url: '/api/public/v1/goods/search',
+		method: 'GET',
+		data:query
+	})
+}

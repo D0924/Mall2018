@@ -1,6 +1,5 @@
 {
-	"pages": [
-		{
+	"pages": [{
 			"path": "pages/home/home",
 			"style": {
 				"navigationBarTitleText": "首页",
@@ -63,7 +62,9 @@
 				"path": "goodsList/goodsList",
 				"style": {
 					"navigationBarTitleText": "商品列表",
-					"enablePullDownRefresh": false
+					"enablePullDownRefresh": true,
+					"backgroundColor": "#F8F8F8",
+					"onReachBottomDistance": 150
 				}
 			},
 			{
