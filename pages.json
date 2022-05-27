@@ -1,33 +1,32 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [
 		{
 			"path": "pages/home/home",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "首页",
 				"enablePullDownRefresh": false
 			}
-
-		}, {
+		},
+		{
 			"path": "pages/category/category",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "分类",
 				"enablePullDownRefresh": false
 			}
-
-		}, {
+		},
+		{
 			"path": "pages/shoppingCat/shoppingCat",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "购物车",
 				"enablePullDownRefresh": false
 			}
-
-		}, {
+		},
+		{
 			"path": "pages/profile/profile",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "个人中心",
 				"enablePullDownRefresh": false
 			}
-
 		}
 	],
 	"tabBar": {
@@ -49,7 +48,8 @@
 				"text": "购物车",
 				"iconPath": "static/tab_icons/cart.png",
 				"selectedIconPath": "static/tab_icons/cart-active.png"
-			}, {
+			},
+			{
 				"pagePath": "pages/profile/profile",
 				"text": "我的",
 				"iconPath": "static/tab_icons/my.png",
@@ -61,17 +61,30 @@
 		"root": "subPackage",
 		"pages": [{
 				"path": "goodsList/goodsList",
-				"style": {}
+				"style": {
+					"navigationBarTitleText": "商品列表",
+					"enablePullDownRefresh": false
+				}
 			},
 			{
 				"path": "goodsDetails/goodsDetails",
-				"style": {}
+				"style": {
+					"navigationBarTitleText": "商品详情",
+					"enablePullDownRefresh": false
+				}
+			},
+			{
+				"path": "search/search",
+				"style": {
+					"navigationBarTitleText": "搜索好物",
+					"enablePullDownRefresh": false
+				}
 			}
 		]
 	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": "绛河科技",
 		"navigationBarBackgroundColor": "#C00000",
 		"backgroundColor": "#F8F8F8"
 	}
