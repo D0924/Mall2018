@@ -2,7 +2,7 @@
  * @Author: Utopia
  * @Descripttion: Utopia 的代码
  * @Date: 2022-05-26 09:33:53
- * @LastEditTime: 2022-05-27 10:48:16
+ * @LastEditTime: 2022-05-28 14:31:44
  * @Description: file content
 -->
 <template>
@@ -34,7 +34,9 @@
 import {
   getCategoryList
 } from "@/api/category.js";
+import tabBarBadge from "@/mixins/tabBarBadge.js";
 export default {
+  mixins: [tabBarBadge],
   onLoad() {
     // 获取设备信息
     const {

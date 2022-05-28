@@ -5,7 +5,7 @@
     </view>
     <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
       <!-- 轮播图部分 -->
-      <swiper-item v-for="(swiperItem,index) in swiperList" :key="index" @click="handlerSwiperClick(swiperItem.goods_id)">
+      <swiper-item v-for="(swiperItem, index) in swiperList" :key="index" @click="handlerSwiperClick(swiperItem.goods_id)">
         <view class="swiper-item">
           <image :src="swiperItem.image_src"></image>
         </view>
@@ -13,24 +13,24 @@
     </swiper>
     <!-- 分类导航 -->
     <view class="nav-list">
-      <view v-for="(item,index) in categoryList" :key="index" @click="handlerCategoryClick(item)">
+      <view v-for="(item, index) in categoryList" :key="index" @click="handlerCategoryClick(item)">
         <image :src="item.image_src" class="img"></image>
       </view>
     </view>
     <!-- 楼层 -->
     <view class="floor-list">
-      <view class="floor-item" v-for="(item,index) in floorList" :key="index">
+      <view class="floor-item" v-for="(item, index) in floorList" :key="index">
         <image class="floor-title" :src="item.floor_title.image_src"></image>
         <view class="floor-wrap">
           <view class="left">
             <navigator :url="item.product_list[0].url">
-              <image :src="item.product_list[0].image_src" :style="{'width':item.product_list[0].image_width+'rpx'}"></image>
+              <image :src="item.product_list[0].image_src" :style="{ width: item.product_list[0].image_width + 'rpx' }"></image>
             </navigator>
           </view>
           <view class="right">
-            <view v-for="(item,index) in item.product_list" :key="index" v-if="index!==0">
-              <navigator :url="item.url">
-                <image :src="item.image_src" :style="{'width':item.image_width+'rpx'}" mode="widthFix">
+            <view v-for="(item, index) in item.product_list" :key="index">
+              <navigator :url="item.url" v-if="index !== 0">
+                <image :src="item.image_src" :style="{ width: item.image_width + 'rpx' }" mode="widthFix">
                 </image>
               </navigator>
             </view>
@@ -45,14 +45,18 @@
 import {
   getSwiperList,
   getNavCategoryList,
-  getFloordataList
-} from "../../api/home.js"
+  getFloordataList,
+} from "@/api/home.js";
+
+import tabBarBadge from "@/mixins/tabBarBadge.js";
+
 export default {
+  mixins: [tabBarBadge],
   data() {
     return {
       swiperList: [],
       categoryList: [],
-      floorList: []
+      floorList: [],
     };
   },
   // 监听页面加载获取数据
@@ -64,60 +68,56 @@ export default {
   methods: {
     async getSwiperList() {
       try {
-        const {
-          message
-        } = await getSwiperList();
+        const { message } = await getSwiperList();
         this.swiperList = message;
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
     },
     async getNavCategoryList() {
       try {
-        const {
-          message
-        } = await getNavCategoryList();
+        const { message } = await getNavCategoryList();
         this.categoryList = message;
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
     },
     async getFloordataList() {
       try {
-        const {
-          message
-        } = await getFloordataList();
-        message.forEach(floor => {
-          floor.product_list.forEach(prod => {
-            prod.url = "/subPackage/goodsList/goodsList?" + prod.navigator_url.split("?")[1]
-          })
-        })
+        const { message } = await getFloordataList();
+        message.forEach((floor) => {
+          floor.product_list.forEach((prod) => {
+            prod.url =
+              "/subPackage/goodsList/goodsList?" +
+              prod.navigator_url.split("?")[1];
+          });
+        });
         this.floorList = message;
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
     },
     // 事件处理部分
     handlerSwiperClick(id) {
       uni.navigateTo({
-        url: `/subPackage/goodsDetails/goodsDetails?id=${id}`
-      })
+        url: `/subPackage/goodsDetails/goodsDetails?id=${id}`,
+      });
     },
     handlerCategoryClick(item) {
-      console.log(item)
+      console.log(item);
       if (item.name === "分类") {
         uni.switchTab({
-          url: "/pages/category/category"
-        })
+          url: "/pages/category/category",
+        });
       }
     },
     click() {
       uni.navigateTo({
-        url: `/subPackage/search/search`
-      })
-    }
-  }
-}
+        url: `/subPackage/search/search`,
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss">
