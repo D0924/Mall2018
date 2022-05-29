@@ -2,7 +2,7 @@
  * @Author: Utopia
  * @Descripttion: Utopia 的代码
  * @Date: 2022-05-27 21:50:14
- * @LastEditTime: 2022-05-29 21:03:34
+ * @LastEditTime: 2022-05-29 21:36:48
  * @Description: file content
  */
 const getters = {
@@ -21,5 +21,7 @@ const getters = {
     if (!state.user.address.provinceName) return ""
     return state.user.address.provinceName + state.user.address.cityName + state.user.address.countyName + state.user.address.detailInfo
   },
+  token: (state) => state.user.token,
+  userInfo: (state) => state.user.userInfo,
 }
 export default getters
