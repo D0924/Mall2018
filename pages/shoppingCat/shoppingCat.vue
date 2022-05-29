@@ -2,32 +2,42 @@
  * @Author: Utopia
  * @Descripttion: Utopia 的代码
  * @Date: 2022-05-26 09:34:28
- * @LastEditTime: 2022-05-28 22:38:49
+ * @LastEditTime: 2022-05-29 21:21:44
  * @Description: file content
 -->
 <template>
-  <view class="cart-wrap">
-    <!-- 收货地址组件 -->
-    <shippingAddress />
-    <!-- 购物车标题部分 -->
-    <view class="cart-title">
-      <uni-icons type="shop" size="18"></uni-icons>
-      <text>购物车</text>
-    </view>
-    <!-- 购物车商品部分 -->
-    <!-- <view>
+  <view>
+    <!-- 购物车为空页面结构 -->
+    <view class="cart-wrap" v-if="carts.length!=0">
+      <!-- 收货地址组件 -->
+      <shippingAddress />
+      <!-- 购物车标题部分 -->
+      <view class="cart-title">
+        <uni-icons type="shop" size="18"></uni-icons>
+        <text>购物车</text>
+      </view>
+      <!-- 购物车商品部分 -->
+      <!-- <view>
       <goodsItem v-for="(goods,index) in carts" :key="index" :goods="goods" :showRadio="true" :showNumberBox="true" @raido-change="raidoChange" @num-change="numChange"></goodsItem>
     </view> -->
-    <!-- 购物车部分新增左滑删除 -->
-    <uni-swipe-action>
-      <block v-for="(goods,index) in carts" :key="index">
-        <uni-swipe-action-item :options="options" @click="handlerSwipeActionItem(goods)">
-          <goods-item :goods="goods" :showRadio="true" :showNumberBox="true" @raido-change="raidoChange" @num-change="numChange" />
-        </uni-swipe-action-item>
-      </block>
-    </uni-swipe-action>
-    <!-- 底部结算区域 -->
-    <settle></settle>
+      <!-- 购物车部分新增左滑删除 -->
+      <uni-swipe-action>
+        <block v-for="(goods,index) in carts" :key="index">
+          <uni-swipe-action-item :options="options" @click="handlerSwipeActionItem(goods)">
+            <goods-item :goods="goods" :showRadio="true" :showNumberBox="true" @raido-change="raidoChange" @num-change="numChange" />
+          </uni-swipe-action-item>
+        </block>
+      </uni-swipe-action>
+      <!-- 底部结算区域 -->
+      <settle></settle>
+    </view>
+    <!-- 购物车非空空页面结构 -->
+    <view v-else>
+      <view class="empty">
+        <image src="/static/cart_empty@2x.png" />
+        <text>这里空空如也</text>
+      </view>
+    </view>
   </view>
 </template>
 
@@ -80,7 +90,7 @@ export default {
 </script>
 
 <style lang="scss">
-.cart-wrap{
+.cart-wrap {
   padding-bottom: 100rpx;
 }
 .cart-title {
@@ -92,6 +102,23 @@ export default {
   border-bottom: 2rpx solid #efefef;
   text {
     margin-left: 20rpx;
+  }
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 300rpx;
+  image {
+    width: 180rpx;
+    height: 180rpx;
+  }
+  text {
+    font-size: 24rpx;
+    color: gray;
+    margin-top: 30rpx;
   }
 }
 </style>

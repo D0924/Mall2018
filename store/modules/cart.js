@@ -2,7 +2,7 @@
  * @Author: Utopia
  * @Descripttion: Utopia 的代码
  * @Date: 2022-05-27 21:50:00
- * @LastEditTime: 2022-05-28 23:00:27
+ * @LastEditTime: 2022-05-29 20:57:03
  * @Description: 
  */
 
@@ -47,6 +47,13 @@ const mutations = {
 	// 根据传过来的 id 去删除缓存中的数据
 	REMOVE_GOODS_BY_ID(state, goods) {
 		state.carts = state.carts.filter(_ => _.goods_id != goods.goods_id)
+		this.commit("cart/SAVE_TO_STORAGE")
+	},
+	// 更新购物车中的商品状态
+	UPDATE_GOODS_STATE(state, status) {
+		state.carts.forEach(goods => {
+			goods.goods_state = status;
+		});
 		this.commit("cart/SAVE_TO_STORAGE")
 	}
 };

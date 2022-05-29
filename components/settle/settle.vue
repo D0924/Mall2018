@@ -2,15 +2,15 @@
  * @Author: Utopia
  * @Descripttion: Utopia 的代码
  * @Date: 2022-05-28 22:34:01
- * @LastEditTime: 2022-05-28 23:05:50
+ * @LastEditTime: 2022-05-29 21:09:11
  * @Description: file content
 -->
 <template>
   <view class="settle-wrap">
-    <view class="left">
-      <radio :checked="true" color="#C00000" /><text>全选</text>
+    <view class="left" @click="changeRadio">
+      <radio :checked="ifFullCheck" color="#C00000" /><text>全选</text>
     </view>
-    <view class="content">合计:￥<text class="price">100.00</text></view>
+    <view class="content">合计:￥<text class="price">{{checkGoodsCount}}</text></view>
     <view class="rigth">
       结算({{check_count}})
     </view>
@@ -18,11 +18,15 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"
+import { mapGetters, mapMutations } from "vuex"
 export default {
   name: "settle",
   computed: {
-    ...mapGetters(['check_count'])
+    ...mapGetters(['check_count', 'cartsTotal', 'checkGoodsCount']),
+    // 计算属性处理 全选状态
+    ifFullCheck() {
+      return this.check_count === this.cartsTotal
+    }
   },
   data() {
     return {
@@ -30,7 +34,11 @@ export default {
     };
   },
   methods: {
-
+    ...mapMutations("cart", ["UPDATE_GOODS_STATE"]),
+    // 事件处理
+    changeRadio() {
+      this.UPDATE_GOODS_STATE(!this.ifFullCheck);
+    }
   },
 }
 </script>
